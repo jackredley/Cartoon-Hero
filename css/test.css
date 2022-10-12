@@ -1,0 +1,79 @@
+body{
+	background-color: whitesmoke;
+}
+
+h1{font-size: 30px;
+	color: salmon;
+}
+h2{font-size: 20px;
+	color: powderblue;}
+.big{
+	font-size: 60px;
+}
+.uppercase{
+	text-transform: uppercase;
+}
+.uppercase.big{
+	color: navy;
+} 
+h1 span{
+	color: violet;
+}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+ScrollTrigger.defaults({
+  markers: false
+});
+
+// Sticky Circle Grow
+$(".sticky-circle-wrap").each(function (index) {
+  let triggerElement = $(this);
+  let targetElement = $(".sticky-circle-image-container");
+
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: triggerElement,
+      // trigger element - viewport
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1
+    }
+  });
+  tl.fromTo(targetElement, {
+      width: "10rem",
+      height: "10rem",
+    },
+    {
+      width: "50rem",
+      height: "50rem",
+      duration: 1
+    }
+  );
+});
+
+// Animate From
+$(".header_text-move").each(function (index) {
+  let triggerElement = $(this);
+  let targetElement = $(this);
+
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: triggerElement,
+      // trigger element - viewport
+      start: "top top",
+      end: "bottom top",
+      scrub: 1
+    }
+  });
+  tl.from(targetElement, {
+    y: "100%",
+    duration: 2
+  });
+});
+
+</script>
